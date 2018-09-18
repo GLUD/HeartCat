@@ -135,7 +135,14 @@ Desarrollar un dispositivo que obtenga el latido del coraz\'on de un gato, para 
         
 \end{itemize}
 
+\section{MARCO TE\'ORICO}
 
+\subsection{Arduino}
+
+Arduino es una plataforma de creaci\'on de electr\'onica de c\'odigo abierto, la cual est\'a basada en hardware y software libre, flexible y f\'acil de utilizar para los creadores y desarrolladores. 
+\subsection{Pulso}
+
+El pulso de una persona es la pulsaci\'on provocada por la expansi\'on de sus arterias como consecuencia de la circulaci\'on de sangre bombeada por el coraz\'on. Se obtiene, por lo general, en partes del cuerpo donde las arterias se encuentran m\'as pr\'oximas a la piel, como en las muñecas o el cuello.
 
 \section{TRABAJOS RELACIONADOS}
 %using \TeX. If you are using multiple \TeX\ files you must make sure that the ``MAIN`` source file is called root.tex - this is particularly important if your conference is using PaperPlaza's built in \TeX\ to PDF conversion tool.
@@ -213,23 +220,9 @@ Adem\'as, se resaltan las dificultades que podr\'ian tenerse:
 \end{itemize}
 
 
-%\begin{table}[h]
-%\caption{An Example of a Table}
-%\label{table_example}
-%\begin{center}
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
-
 \subsection{Metodolog\'ia de trabajo}
 
-Desde la perspectiva de la Ingenier\'ia de Software, se han planteado los siguientes casos de uso \ref{fig:Casosdeuso}:
+Desde la perspectiva de la Ingenier\'ia de Software, se han planteado los siguientes casos de uso (figura \ref{fig:Casosdeuso})
 
 \begin{figure}
 \centering
@@ -238,18 +231,19 @@ Desde la perspectiva de la Ingenier\'ia de Software, se han planteado los siguie
 \label{fig:Casosdeuso}
 \end{figure}
 
-Los cuales requieren el manejo de una base de datos, la cual se plantea en una primera versi\'on en la figura \ref{fig:entidades}:
+Los cuales requieren el manejo de una base de datos, la cual se plantea en una primera versi\'on (figura \ref{fig:entidades})
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{bdvunoheartcat.png}
-\caption{Primera versi\'on tabla entidad relaci\'on para estructuraci\'on de la base de datos}
+\includegraphics[width=0.5\textwidth]{bdvunoheartcat.png} \caption{Primera versi\'on tabla entidad relaci\'on para estructuraci\'on de la base de datos}
 \label{fig:entidades}
 \end{figure}
 
 
    
 \section{DISE\~NO}
+
+\subsection{Dise\~no de prototipo}
 
 Utilizando la herramienta \textit{Marvel}, se ha creado el primer prototipo de la apliaci\'on con la que interactuar\'a el usuario:
 
@@ -260,7 +254,7 @@ Utilizando la herramienta \textit{Marvel}, se ha creado el primer prototipo de l
 \label{fig:home}
 \end{figure}
 
-El usuario, una vez accede a la aplicaci\'on se encontrar\'a con ese sistema de logueo \ref{fig:login}, el cual le presenta dos opciones, ingresar con una cuenta existente o crear una nueva. As\'i, se presenta la necesidad de manejar una base de datos.\\
+El usuario, una vez accede a la aplicaci\'on se encontrar\'a con ese sistema de logueo (figura \ref{fig:login}), el cual le presenta dos opciones, ingresar con una cuenta existente o crear una nueva. As\'i, se presenta la necesidad de manejar una base de datos.\\
 
 \begin{figure}
 \centering
@@ -278,7 +272,7 @@ En la imagen \ref{fig:signup} podemos ver el primer prototipo de registros para 
 \caption{Registro de nuevos usuarios}
 \end{figure}
 
-Una vez el usuario accede con su usuario y contrase\~na, puede ver el men\'u principal \ref{fig:menu}, el cual le permitir\'a llamar o enviar un mensaje de texto al veterinario, modificar la informaci\'on actual, ver el estado o salir.\\
+Una vez el usuario accede con su usuario y contrase\~na, puede ver el men\'u principal (figura \ref{fig:menu}), el cual le permitir\'a llamar o enviar un mensaje de texto al veterinario, modificar la informaci\'on actual, ver el estado o salir.\\
 
 \begin{figure}
 \centering
@@ -314,10 +308,7 @@ Para la graficaci\'on de los datos recibidos, se ha dise\~nado el siguiente c\'o
 \caption{C\'odigo utilizado para recibir y graficar los pulsos}
 \end{figure}
 
-Gracias a lo cual, se tomaron datos en un ser humano:
-% AÑADIR IMAGEN MANO
-
-Generando la siguiente gr\'afica \ref{fig:senal}:
+Gracias a lo cual, se tomaron datos en un ser humano, tambi\'en con el objetivo de comprobar el correcto funcionamiento del sensor, generando la siguiente gr\'afica \ref{fig:senal}:
  
 \begin{figure}
 \centering
@@ -330,16 +321,38 @@ La cual corresponde con los principales intervalos del latido humano:
 
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{ecg.jpg}
+\includegraphics[width=0.45\textwidth]{ecg.jpg}
 \label{fig:intervalo}
 \caption{Intervalos del latido del coraz\'on humano}
 \end{figure}
+
+Despu\'es, se realiz\'o una prueba con un gato (\ref{fig:cat1}):
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{cat1.png}
+\label{fig:cat1}
+\caption{Primera prueba de toma de datos con un gato}
+\end{figure}
+
+Lo cual gener\'o la siguiente gr\'afica:
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{catData.png}
+\label{fig:cat1Data}
+\caption{Gr\'afico Primera prueba de toma de datos con un gato}
+\end{figure}
+
+Sin embargo, se pudo observar que estos datos se ven afectados por el ruido del entorno, es decir, los movimientos que pueda sufrir el sensor, los sonidos de alto volumen o la luz artificial.\\
 
 \section{CONCLUSIONES}
 
 De acuerdo a los trabajos relacionados, se puede observar que no hay muchos estudios realizados que relacionen las dos \'areas; el \'area veterinaria se ha centrado en estudiar las enfermedades y el \'area de ingener\'ia se ha centrado en la aplicaci\'on de las ciencias b\'asicas para la soluci\'on de problemas.\\
 
-As\'i es viable un estudio que implica ambas ciencias, el cual ser\'a desarrollado utilizando la metodolog\'ia de software basada en prototipos, la cual bajo el enfoque evolutivo permitir\'a tener un desarrollo r\'apido.
+As\'i es viable un estudio que implica ambas ciencias, el cual ser\'a desarrollado utilizando la metodolog\'ia de software basada en prototipos, la cual bajo el enfoque evolutivo permitir\'a tener un desarrollo r\'apido.\\
+
+De acuerdo a la implementaci\'on realizada, se puede observar que la toma de datos realizada para el gato no es totalmente verificable, dado que, no fue tomada en el punto con m\'as probabilidad de obtener las pulsaciones. Adem\'as, el pelo del animal es un impedimento para una buena toma de datos.
 
 \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
                                   % on the last page of the document manually. It shortens
