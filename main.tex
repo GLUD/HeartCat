@@ -1,0 +1,479 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+ %Definir idioma español
+%Codificacion utf-8
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {images/} }
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+Latido del coraz\'on de un gato*
+\thanks{*Universidad Distrital Francisco Jos\'e de Caldas}\\
+}
+%\author{ \parbox{3 in}{\centering Huibert Kwakernaak*
+%         \thanks{*Use the $\backslash$thanks command to put information here}\\
+%         Faculty of Electrical Engineering, Mathematics and Computer Science\\
+%         University of Twente\\
+%         7500 AE Enschede, The Netherlands\\
+%         {\tt\small h.kwakernaak@autsubmit.com}}
+%         \hspace*{ 0.5 in}
+%         \parbox{3 in}{ \centering Pradeep Misra**
+%         \thanks{**The footnote marks may be inserted manually}\\
+%        Department of Electrical Engineering \\
+%         Wright State University\\
+%         Dayton, OH 45435, USA\\
+%         {\tt\small pmisra@cs.wright.edu}}
+%}
+
+\author{Leidy Marcela Aldana Burgos$^{1}$ %and Pradeep Misra$^{2}$% <-this % stops a space
+%\thanks{*This work was not supported by any organization}% <-this % stops a space
+\thanks{$^{1}$Estudiante Ingenier\'ia de Sistemas,
+        Universidad Distrital Francisco Jos\'e de Caldas.
+        {\tt\small lmaldanab@correo.udistrital.edu.co}}%
+%\thanks{$^{2}$P. Misra is with the Department of Electrical Engineering, Wright State University,
+ %       Dayton, OH 45435, USA
+  %      {\tt\small p.misra at ieee.org}}%
+}
+
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+This project will develop a device that obtains the heartbeat of a cat, with the aim of helping veterinary medicine to give accurate reports in cases of heart failure, which is a problem that can affect cats.\\
+
+The open-source platform that will be used is Arduino since there is a sensor that complies with this functionality, detecting heartbeats, in addition, it can be programmed using an IDE and its own programming language.\\
+
+\end{abstract}
+
+\begin{keywords}
+Internet de las cosas, Arduino, Sensor, coraz\'on, gato, latido.
+\end{keywords}
+
+\section*{RESUMEN}
+
+Este proyecto desarrollar\'a un dispositivo que obtiene el latido del coraz\'on de un gato, con el objetivo de ayudar a la medicina veterinaria a dar informes precisos en casos de insuficiencia card\'iaca, que es un problema que puede afectar a los gatos.\\
+
+La plataforma de c\'odigo abierto que se utilizar\'a es Arduino, ya que hay un sensor que cumple con esta funcionalidad, que detecta latidos del coraz\'on, adem\'as, se puede programar utilizando un IDE y su propio lenguaje de programaci\'on.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCCI\'ON}
+
+Los gatos tienen diferentes tipos de problemas cardiacos, los cuales, pueden ser tratados si se diagnostican a tiempo, con el objetivo de lograr un diagn\'ostico oportuno se desarrollar\'a un dispositivo que detectar\'a las anormalidades del latido del coraz\'on del felino, enviando r\'apidamente un mensaje al responsable del mismo, y si la anormalidad persiste se enviar\'a un reporte al veterinario.
+\\
+
+Este dispositivo requerir\'a dedicar tiempo al aprendizaje de Arduino y la implementaci\'on de uno de sus sensores, la propuesta de la utilizaci\'on de esta plataforma libre se basa en la idea de \textit{Vimos, Sacoto, Morales 2016}, la cual postula \textit{"La simplicidad en el uso de estos dispositivos ha provocado que el n\'umero de proyectos que hacen uso de este tipo de hardware se incremente cada d\'ia."} (ver referencia \cite{c1})
+
+\section{JUSTIFICACI\'ON}
+
+Este proyecto generar\'a documentaci\'on libre, dado que el conocimiento adquirido ser\'a publicado a trav\'es de un art\'iculo para que la comunidad pueda acceder; adem\'as, se necesitar\'a tener (o adquirir) un buen conocimiento en diferentes \'areas como Internet de las cosas, Arduino, manejo de sensores, entre otros.
+
+\section{OBJETIVOS}
+
+\subsection{OBJETIVO GENERAL}
+
+Desarrollar un dispositivo que obtenga el latido del coraz\'on de un gato, para generar un reporte y posibles alertas implementando el sensor de pulso de Arduino.
+
+\subsection{OBJETIVOS ESPEC\'IFICOS}
+
+\begin{itemize}
+    \item Aprender a utilizar la plataforma Arduino
+    \item Implementar el sensor KY-039 como detector del latido del coraz\'on en relaci\'on a posibles fallos
+    \item Evaluar si el dispositivo lograr\'a los objetivos propuestos en el proyecto
+    \item Convalidar el correcto funcionamiento del Arduino con su sensor
+    \item Desarrollar una aplicaci\'on para visualizar los latidos del coraz\'on del gato
+    \item Generar un paso de mensajes entre el Arduino y la aplicaci\'on 
+    \item Crear un reporte de los datos registrados por el dispositivo
+\end{itemize}
+
+
+\section{ANTECEDENTES}
+
+\subsection{Pulso}
+
+El pulso de una persona es la pulsaci\'on provocada por la expansi\'on de sus arterias como consecuencia de la circulaci\'on de sangre bombeada por el coraz\'on. Se obtiene, por lo general, en partes del cuerpo donde las arterias se encuentran m\'as pr\'oximas a la piel, como en las muñecas o el cuello.
+
+\subsection{Arduino}
+
+Arduino es una plataforma de creaci\'on de electr\'onica de c\'odigo abierto, la cual est\'a basada en hardware y software libre, flexible y f\'acil de utilizar para los creadores y desarrolladores. 
+
+\subsection{Sensor de pulso card\'iaco}
+
+Este sensor (figura \ref{fig:sensor3}) monitorea el flujo sangu\'ineo a trav\'es de las venas.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.30\textwidth]{pulse.png}
+\caption{Imagen del sensor de los latidos del coraz\'on \cite{c1}}
+\label{fig:sensor3}
+\end{figure}
+
+\section{TRABAJOS RELACIONADOS}
+
+
+\subsection{Dise\~{n}o y Desarrollo de Sistema de Gesti\'on Ambulancia-Hospital Para Enviar Datos Personales, de Ubicaci\'on y Pulso Card\'iaco del Paciente \cite{c9}}
+
+%%DISPNIBLE EN:
+%http://repository.udistrital.edu.co/bitstream/11349/13392/1/BermudezBucuruBrayanAndres2018.pdf
+
+Este trabajo de grado implement\'o un sistema que transmite el estado en tiempo real de un paciente dentro de una ambulancia utilizando el mismo sensor, con la \'unica diferencia de que el elemento conectado a \'el es una \textit{Raspberri Pi}; adem\'as, utiliza el sistema GPS para el env\'io de datos.
+%using \TeX. If you are using multiple \TeX\ files you must make sure that the ``MAIN`` source file is called root.tex - this is particularly important if your conference is using PaperPlaza's built in \TeX\ to PDF conversion tool.
+
+\subsection{Heart Rate Monitoring System using IR base Sensor \& Arduino Uno  \cite{c7}}
+
+\textit{Prajakta A. Pawar}, el autor de este art\'iculo parte de la necesidad de un monitoreo constante del paciente humano, as\'i, como soluci\'on plantea un sistema que monitorea el latido del coraz\'on humano para enviarlo al doctor utilizando Arduino y el m\'odulo GSM.\\
+
+Este proyecto, comparte la necesidad de este proyecto pero orientado a animales; por lo cual servir\'a como gu\'ia en la estructuraci\'on, es decir, por si alguna idea puede complementarse.\\
+
+Adem\'as, en contraste al mismo, la documentaci\'on de este proyecto referenciar\'a el sensor no s\'olo por su utilidad, sino por la referencia en el mercado contemplando una posible replicaci\'on del mismo.
+
+% https://ieeexplore-ieee-org.bdigital.udistrital.edu.co/stamp/stamp.jsp?tp=&arnumber=7057005
+
+\subsection{Definici\'on conceptual de Arquitectura: Implementaci\'on de una red de sensores usando dispositivos Arduino y aplicaciones multiplataforma mediante el est\'andar OPC UA. \cite{c1}}
+
+En este art\'iculo el autor plantea una arquitectura OPC en relaci\'on a unos sensores de Arduino y a un servidor OPC. Despu\'es se hace enf\'asis en garantizar la sincronizaci\'on de los datos enviados desde diferentes puertas de enlace (Gateways OPC), para lo cual se requiere que cada elemento est\'e sincronizado con un servicio de Network Time Protocol \textit{NTP}. Finalmente, se muestran algunos resultados del servidor de an\'alisis de datos.\\
+
+Para el proyecto planteado, se utilizar\'a el servicio de Network Time Protocol \textit{NTP}; de acuerdo a lo le\'ido acerca de este caso, la implementaci\'on de red de sensores.
+
+\begin{figure}
+\centering
+\label{fig:uno}
+\includegraphics[width=0.45\textwidth]{temperatura.png}
+\caption{Figura 5 tomada de \cite{c1}}
+\end{figure}
+
+% https://ieeexplore-ieee-org.bdigital.udistrital.edu.co/stamp/stamp.jsp?tp=&arnumber=7778476&tag=1
+
+\subsection{Heart rate and arrhythmia frequency of normal cats compared to cats with asymptomatic hypertrophic cardiomyopathy. \cite{c2}}
+
+Este art\'iculo muestra un estudio realizado a diferentes gatos, con el objetivo de comparar la frecuencia y complejidad de la arritmia de 24 horas en gatos con HCM asintom\'atica y gato normal.\\
+
+Adem\'as, proporciona para el proyecto la justificaci\'on de existencia de enfermedades del coraz\'on en gatos.
+% https://ac-els-cdn-com.bdigital.udistrital.edu.co/S1760273414000642/1-s2.0-S1760273414000642-main.pdf?_tid=e27ff1f5-a272-4aac-9c42-0b2334c2ca72&acdnat=1536618156_472cfb81d9484ae2b170e7f0e3e824f8
+
+\subsection{Diagnostic accuracy of plasma atrial natriuretic peptide concentrations in cats with and without cardiomyopathies. \cite{c3}}
+
+Este art\'iculo muestra un estudio que hace uso de una ecocardiograf\'ia para determinar gatos enfermos, subdivididos en gatos asintom\'aticos sin dilataci\'on auricular izquierda (DAI), gatos asintom\'aticos con DAI y gatos con insuficiencia card\'iaca.\\ % https://ac-els-cdn-com.bdigital.udistrital.edu.co/S1760273417302047/1-s2.0-S1760273417302047-main.pdf?_tid=195ad301-2acc-4ebf-8365-2755063e3560&acdnat=1536618934_4f51babde492065888087b88ebf91787
+
+Al igual que la cita anterior, este art\'iculo proporciona bases en conocimiento de las diferentes enfermedades en gatos a nivel del sistema cardiovascular.
+
+\subsection{e-Health: Biomedical instrumentation with Arduino \cite{c5}}
+
+Este art\'iculo describe  el desarrollo de actividades de laboratorio para la introducci\'on al sistema biom\'edico utilizando Arduino, as\'i como algunas experiencias y resultados obtenidos de ellas.\\
+
+As\'i, relaciona la tecnolog\'ia arduino con las necesidades m\'edicas a nivel humano.
+
+% https://ac-els-cdn-com.bdigital.udistrital.edu.co/S2405896317323339/1-s2.0-S2405896317323339-main.pdf?_tid=330640b6-9a7b-4fb4-a494-634c267aa56f&acdnat=1536774498_fd12624c4efcb28253fda8233328c3d9
+
+\subsection{Taking Arduino to the Internet of Things: The ASIP programming model \cite{c6}}
+
+En este art\'iculo se da a conocer el modelo Servicio de Interfaz de Programaci\'on Arduino (ASPI), con su implementaci\'on, su respectivo modelo de clases.
+
+% https://ac-els-cdn-com.bdigital.udistrital.edu.co/S0140366416300743/1-s2.0-S0140366416300743-main.pdf?_tid=471d00b0-f5ab-4dc7-9198-0cd5f9a0df18&acdnat=1536774542_24e1c944d490200cbb0757eaa3a29b7f
+
+
+
+
+\section{METODOLOG\'IA}
+
+Este proyecto se orienta a la construcci\'on de un sistema, el cual puede incrementar sus requerimientos con el paso del tiempo, por esto la metodolog\'ia empleada para el desarrollo del proyecto implementa un modelo de proceso evolutivo, desarrollando as\'i versiones cada vez m\'as completas del Software.\\
+
+\subsection{Descripci\'on de recursos}
+
+\begin{itemize}
+
+    \item 
+        \textbf{Recurso:} Arduino\\
+        \textbf{Justificaci\'on:} Plataforma open-source para controlar y hacer uso del sensor que toma los latidos\\
+        
+    \item 
+        \textbf{Recurso:} Pulse sensor, tambi\'en conocido como Sensor KY-039\\
+        \textbf{Justificaci\'on:} M\'odulo de Arduino que detecta el latido del coraz\'on\\
+        
+    \item 
+        \textbf{Recurso:} IDE\\
+        \textbf{Justificaci\'on:} Integrated Development Environment para Arduino\\
+        
+    \item 
+        \textbf{Recurso:} Overleaf\\
+        \textbf{Justificaci\'on:} Editor de LaTeX en l\'inea para realizar la documentaci\'on del proyecto\\
+    
+    \item 
+        \textbf{Recurso:} Marvel\\
+        \textbf{Justificaci\'on:} Editor para creaci\'on de prototipos\\
+        % https://marvelapp.com/
+        
+    \item 
+        \textbf{Recurso:} Enterprise Architect\\
+        \textbf{Justificaci\'on:} Herramienta para diagramar casos de uso y modelo entidad - relaci\'on\\
+            
+     \item 
+        \textbf{Recurso:} Django\\
+        \textbf{Justificaci\'on:} Framework de desarrollo web\\
+        
+\end{itemize}
+
+
+\subsection{Prototipos}
+
+Este proyecto tiene una determinada necesidad, sin embargo, no se han determinado los detalles espec\'ificos. As\'i, la implementaci\'on de un modelo de prototipos facilita la comprensi\'on del sistema, teniendo en cuenta que la aplicaci\'on del mismo se hace con un enfoque evolutivo.\\
+
+Adem\'as, se resaltan las dificultades que podr\'ian tenerse:
+
+\begin{itemize}
+    \item Las posibles elecciones inadecuadas que puedan tomarse con el objetivo de lograr funcionalidad en el menor tiempo posible.
+    \item Rehacer el producto al final, basados en el prototipo realizado durante el desarrollo.
+\end{itemize}
+
+
+\subsection{Metodolog\'ia de trabajo}
+
+Desde la perspectiva de la Ingenier\'ia de Software, se han planteado los siguientes casos de uso (figura \ref{fig:Casosdeuso})
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{casousoheartcat.png}
+\caption{Primera versi\'on Casos de uso para la aplicaci\'on. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Enterprise Architect}}
+\label{fig:Casosdeuso}
+\end{figure}
+
+Los cuales requieren el manejo de una base de datos, la cual se plantea en una primera versi\'on (figura \ref{fig:entidades})
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{bdvunoheartcat.png} \caption{Primera versi\'on tabla entidad relaci\'on para estructuraci\'on de la base de datos. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Enterprise Architect}}
+\label{fig:entidades}
+\end{figure}
+
+
+   
+\section{DISE\~{N}O}
+
+\subsection{Dise\~{n}o de prototipo}
+
+Utilizando la herramienta \textit{Marvel}, se ha creado el primer prototipo de la aplicaci\'on con la que interactuar\'a el usuario (figura \ref{fig:home}):
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{hc1.png}
+\caption{Logo aplicaci\'on vista desde un sistema Android. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Marvel app}}
+\label{fig:home}
+\end{figure}
+
+El usuario, una vez accede a la aplicaci\'on se encontrar\'a con ese sistema de logueo (figura \ref{fig:login1}), el cual le presenta dos opciones, ingresar con una cuenta existente o crear una nueva. As\'i, se presenta la necesidad de manejar una base de datos.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{hc2.png}
+\caption{Vista para iniciar sesi\'on. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Marvel app}}
+\label{fig:login1}
+\end{figure}
+
+En la imagen (figura \ref{fig:signup}) podemos ver el primer prototipo de registros para usuarios sin una cuenta.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{hc3.PNG}
+\caption{Registro de nuevos usuarios. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Marvel app}}
+\label{fig:signup}
+\end{figure}
+
+Una vez el usuario accede con su usuario y contrase\~na, puede ver el men\'u principal (figura \ref{fig:menu}), el cual le permitir\'a llamar o enviar un mensaje de texto al veterinario, modificar la informaci\'on actual, ver el estado o salir.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{hc4.PNG}
+\caption{Menu principal para el responsable del gato. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Marvel app}}
+\label{fig:menu}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{HC5.PNG}
+\caption{Visualizaci\'on del estado de salud. Fuente: autor\'ia propia, diagrama realizado utilizando la herramienta \textit{Marvel app}}
+\label{fig:viewingHeart}
+\end{figure}
+
+\section{IMPLEMENTACI\'ON}
+
+%Se realiz\'o el montaje f\'isico entre el arduino, el sensor, y la conexi\'on a un PC para la toma de datos utilizando el programa \textit{Arduino}.
+Se instal\'o el IDE de arduino, en un sistema GNU Linux (Figura \ref{fig:ide})\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{installArduino.png}
+\caption{Instalaci\'on del IDE de Arduino. Captura de pantalla tomada por el autor de este art\'iculo}
+\label{fig:ide}
+\end{figure}
+
+Despu\'es, se busc\'o el datasheet correspondiente al sensor de pulso\footnote{Disponible en: https://www.generationrobots.com/media/DetecteurDePoulsAmplifie/PulseSensorAmpedGettingStartedGuide.pdf}, con el objetivo de conectar el arduino al sensor\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{arduinoUno.jpeg}
+\caption{Conexi\'on del sensor con el arduino}
+\label{fig:arduinoConnected}
+\end{figure}
+
+Para realizar la conexi\'on de la figura (\ref{fig:arduinoConnected}), se tuvo en cuenta que el cable blanco conectado a $-$ va conectado a la entrada de poder GND del Arduino, el cable cafe conectado a $S$ va conectado al puerto serial $A0$ del arduino y el cable negro conectado a $+$ va conectado a la entrada de poder de $5V$\\
+
+Despu\'es, se incluy\'o la librer\'ia correspondiente al sensor de pulso (figura \ref{fig:library}).\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{includeLibrary.png}
+\caption{Incluyendo la librer\'ia para graficar}
+\label{fig:library}
+\end{figure}
+
+Para la graficaci\'on de los datos recibidos, se ha reutilizado el siguiente c\'odigo (figura \ref{fig:code}), tomado del v\'ideo referenciado en el pie de p\'agina de la misma imagen\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{codeArduino.png}
+\caption{C\'odigo utilizado para recibir y graficar los pulsos. Fuente: V\'ideo \textit{youtube:} Pulse Sensor for Arduino - 14 . Disponible en: \textit{https://www.youtube.com/watch?v=RbB8NSRa5X4}}
+\label{fig:code}
+\end{figure}
+
+Gracias a lo cual, se tomaron datos en un ser humano, tambi\'en con el objetivo de comprobar el correcto funcionamiento del sensor, generando la siguiente gr\'afica \ref{fig:senal1}
+ 
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{senal.png}
+\caption{Gr\'afica de la se\~nal, pulso tomado con un ser humano. Visualizado en el IDE de Arduino gracias al c\'odigo utilizado anteriormente}
+\label{fig:senal1}
+\end{figure}
+
+
+
+Despu\'es, se realiz\'o una toma de datos con un gato (figura \ref{fig:cat1})
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{cat1.png}
+\caption{Primera prueba de toma de datos con un gato}
+\label{fig:cat1}
+\end{figure}
+
+Generando as\'i, un grafico (figura \ref{fig:cat1Data}) a trav\'es del IDE de Arduino, pero sin cambiar el c\'odigo utilizado para los seres humanos.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{catData.png}
+\caption{Gr\'afico Primera prueba de toma de datos con un gato}
+\label{fig:cat1Data}
+\end{figure}
+
+Sin embargo, se pudo observar que estos datos se ven afectados por el ruido del entorno, es decir, los movimientos que pueda sufrir el sensor, los sonidos de alto volumen o la luz artificial.\\
+
+\section{DISCUSI\'ON DE RESULTADOS}
+
+La figura (\ref{fig:senal1}) corresponde con los principales intervalos del latido humano, los cuales pueden verse en la imagen \ref{fig:intervalo}.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.40\textwidth]{ecg.jpg}
+\caption{Intervalos del latido del coraz\'on humano}
+\label{fig:intervalo}
+\end{figure}
+
+Adem\'as del \'analisis de esta imagen, se tendr\'a en cuenta que la frecuencia cardiaca de un ser humano normal, mayor a 10 a\~{n}os esta entre 60 y 100 latidos por minuto \cite{c10}; mientras que, la frecuencia cardiaca de un gato en estado de reposo es de 150 a 200 latidos por minuto.\\
+
+Esta diferencia en la frecuencia cardiaca debe alterar la linea 8 del c\'odigo utilizado (figura \ref{fig:code})
+
+\section{CONCLUSIONES}
+
+De acuerdo a los trabajos relacionados, se puede observar que el \'area veterinaria se ha centrado en estudiar las enfermedades y el \'area de ingener\'ia se ha centrado en la aplicaci\'on de las ciencias b\'asicas para la soluci\'on de problemas, para el problema en particular tratado, no existe documentaci\'on de un proyecto con el mismo objetivo en gatos.\\
+
+
+
+De acuerdo a la implementaci\'on realizada, se puede observar que la toma de datos realizada para el gato no es totalmente verificable, dado que, no fue tomada en el punto con m\'as probabilidad de obtener las pulsaciones. Adem\'as, el pelo del animal es un impedimento para una buena toma de datos.
+
+\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{APPENDIX}
+
+%Appendixes should appear before the acknowledgment.
+
+%\section*{ACKNOWLEDGMENT}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{c1} V. Vimos, E. Sacoto, D.X. Morales, \textit{Conceptual Architecture Definition: Implementation of a Network Sensor Using Arduino Devices and Multiplatform Applications through OPC UA.}.\\
+
+\bibitem{c2} Bethany L. Jackson, DVM*, Linda B. Lehmkuhl, DVM, MS ,Darcy B. Adin, DVM. \textit{Heart rate and arrhythmia frequency of normal cats compared to cats withasymptomatic hypertrophic cardiomyopathy}. Journal of Veterinary Cardiology (2014). \\ 
+
+\bibitem{c3} Y. Heishima, DVMa,b, Y. Hori, DVM, PhDa,*, K. Nakamura,DVM, PhDc, Y. Yamashita, DVMd, N. Isayama, DVM, PhDe,N. Kanno, DVM, PhDf, M. Katagi, DVMg, H. Onodera, DVMh,S. Yamano, DVMi, Y. Aramaki, DVM, PhD. \textit{Diagnostic accuracy of plasma atrial natriuretic peptide concentrations in cats with and without cardiomyopathies}.  (2018) Journal of Veterinary Cardiology. \\
+
+\bibitem{c4} Pressman S. Roger, \textit{Ingenier\'ia del software, un enfoque pr\'actico.} S\'eptima edici\'on. Editorial The Mc Graw-Hill. M\'exico. Cap\'itulo 2. Modelos del Proceso. ISBN: 978-607-15-0314-5.\\
+
+\bibitem{c5} Puente, S.T.* Úbeda, A.* Torres, F. \textit{e-Health: Biomedical instrumentation with Arduino}. Physics, Systems Engineering and Signal Theory Department, University of Alicante, Spain (2017).\\
+
+\bibitem{c6} Gianluca Barbon, Michael Margolis, Filippo Palumbo, FrancoRaimondi, Nick Weldin, \textit{Taking Arduino to the Internet of Things: The ASIP programming model}\\
+
+\bibitem{c7} Prajakta A. Pawar, \textit{Heart Rate Monitoring System using IR base Sensor \& Arduino Uno.} Department of Instrumentation Engineering Vishwakarma  Institute of  Technology. India.\\
+
+\bibitem{c8} P\'agina oficial sensor de pulso Arduino, consultada el lunes 17 de Septiembre de 2018, disponible en:\\ \textit{https://pulsesensor.com/}\\
+
+\bibitem{c9} Bermudez Bucuru, Brayan Andres. \textit{Dise\~no y Desarrollo de Sistema de Gesti\'on Ambulancia-Hospital Para Enviar Datos Personales, de Ubicaci\'on y Pulso Card\'iaco del Paciente}. Trabajo de Grado Universidad Distrital Francisco Jos\'e de Caldas. Recuperado el 07 de Octubre de 2018, en: \textit{http://repository.udistrital.edu.co/handle/11349/13392}\\
+
+\bibitem{c10} Markus MacGill, \textit{¿Qu\'e es la frecuencia cardiaca? ¿Cu\'al es la normal?}, Recuperado el 15 de Octubre de 2018, en: \textit{https://www.medicalnewstoday.com/articles/291182.php}\\
+
+\end{thebibliography}
+
+
+
+
+\end{document}
